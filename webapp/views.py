@@ -1,5 +1,6 @@
 from c1cli.entities.CoreResponse import ActionResponse
 from flask import jsonify, request
+from webapp.core import cache
 from webapp.scripts import get_suggestions_by_name, get_recipe_by_name, get_discount
 from webapp.wsgi import bot
 
@@ -10,17 +11,22 @@ def hello():
     if name is None:
         raise AttributeError
 
-    rv = ActionResponse()
+    if name in cache.keys():
+        s = cache["name"]
+    else:
+        rv = ActionResponse()
 
-    suggestions = get_suggestions_by_name(name)
+        suggestions = get_suggestions_by_name(name)
 
-    recipe = get_recipe_by_name(name)
+        recipe = get_recipe_by_name(name)
 
-    discount = get_discount(name)
+        discount = get_discount(name)
 
-    msg1 = "Customers Who Bought This Item Also Bought: {suggestions}".format(suggestions="\n".join(suggestions))
-    msg2 = "Recipe by Jamie Oliver: {recipe}".format(recipe=recipe)
-    msg3 = "Save {discount} by joining Carrefour MyClub http://carrefourmyclub.com".format(discount=discount)
+        msg1 = "Customers Who Bought This Item Also Bought: {suggestions}".format(suggestions="\n".join(suggestions))
+        msg2 = "Recipe by Jamie Oliver: {recipe}".format(recipe=recipe)
+        msg3 = "Save {discount} by joining Carrefour MyClub http://carrefourmyclub.com".format(discount=discount)
 
-    rv.messages = [msg1, msg2, msg3]
-    return jsonify(rv.to_dict())
+        rv.messages = [msg1, msg2, msg3]
+        s = rv.to_dict()
+        cache['name'] = s
+    return jsonify(s)
