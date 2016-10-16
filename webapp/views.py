@@ -18,15 +18,15 @@ def hello():
 
         suggestions = get_suggestions_by_name(name)
 
-        recipe = get_recipe_by_name(name)
+        #recipe = get_recipe_by_name(name)
 
-        discount = get_discount(name)
+        #discount = get_discount(name)
 
-        msg1 = "Customers Who Bought This Item Also Bought: {suggestions}".format(suggestions="\n".join(suggestions))
-        msg2 = "Recipe by Jamie Oliver: {recipe}".format(recipe=recipe)
-        msg3 = "Save {discount} by joining Carrefour MyClub http://carrefourmyclub.com".format(discount=discount)
+        msg1 = "Customers Who Bought This Item Also Bought: \n{suggestions}".format(suggestions="\n".join(suggestions))
+        #msg2 = "Recipe by Jamie Oliver: {recipe}".format(recipe=recipe)
+        #msg3 = "Save {discount} by joining Carrefour MyClub http://carrefourmyclub.com".format(discount=discount)
 
-        rv.messages = [msg1, msg2, msg3]
+        #rv.messages = [msg1, msg2, msg3]
+        rv.messages = [msg1]
         s = rv.to_dict()
-        cache['name'] = s
     return jsonify(s)
