@@ -11,6 +11,13 @@ r["Count"] = 0
 r["Entities"] = []
 r["ForcedKeyboard"] = None
 r["ForcedState"] = None
-r["Messages"] = ["Customers Who Bought This Item Also Bought: Vino Riesling Clas\nBolsa Carrefour\nQueso Gran Biraghi"]
+r["Messages"] = ["Customers Who Bought This Item Also Bought: \nVino Riesling Clas\nBolsa Carrefour\nQueso Gran Biraghi"]
 
-cache = dict(riesling=r)
+o = dict()
+o["Count"] = 0
+o["Entities"] = []
+o["ForcedKeyboard"] = None
+o["ForcedState"] = None
+o["Messages"] = ["Customers Who Bought This Item Also Bought: \nBolsa Carrefour\nBolsa Carrefour\nQueso Fresco Burgo"]
+
+cache = dict(riesling=r, naranja=o)
