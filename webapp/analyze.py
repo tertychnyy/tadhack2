@@ -64,6 +64,6 @@ def get_good_from_name(name, dictionary):
             ret_name = item
             ret_count = d[item]
 
-    return ret_name
+    return ret_name.title()
 
 
