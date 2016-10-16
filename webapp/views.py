@@ -12,7 +12,7 @@ def hello():
         raise AttributeError
 
     if name in cache.keys():
-        s = cache["name"]
+        s = cache[name]
     else:
         rv = ActionResponse()
 
